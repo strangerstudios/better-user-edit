@@ -20,7 +20,7 @@ function bue_edit_user_profile() {
     #user-menu a { display: block; padding: 12px 20px; color: #555; text-decoration: none; border-radius: 5px; }
 	#user-menu a:hover { background-color: rgba(255,255,255,.7); }
 	#user-menu a.active { background-color: #e3e8ee; color: #333; }
-	#user-menu a:focus { outline: 2px solid rgba(0,0,0,.6); }
+	#user-menu a:focus { outline: 2px solid rgba(0,0,0,.5); }
     </style>
     <script>
 
