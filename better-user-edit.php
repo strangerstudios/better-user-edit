@@ -97,8 +97,6 @@ function bue_edit_user_profile() {
 	        // Get the index of the parent section
 	        var index = $(this).closest('.section').data('index');
 
-						console.log( 'changed ' + index );
-
 	        // Add "notified" class to the corresponding menu item when a form element changes
 	        $('#user-menu a[data-index="' + index + '"]').addClass('changed');
 	    });
