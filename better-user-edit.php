@@ -7,6 +7,7 @@
 * Author URI:  https://wpsunshine.com
 */
 
+add_action( 'show_user_profile', 'bue_edit_user_profile', 9999 );
 add_action( 'edit_user_profile', 'bue_edit_user_profile', 9999 );
 function bue_edit_user_profile() {
 ?>
