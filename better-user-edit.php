@@ -41,30 +41,34 @@ function bue_edit_user_profile() {
 	    var storedIndex = localStorage.getItem( 'userEditSectionIndex' );
 	    var activeSectionIndex = storedIndex !== null ? parseInt( storedIndex, 10 ) : 0;
 
-	    // Initialize sections
+	    // First pass. Add class to wrapping divs.
 	    var $sections = $fields.find( 'h2, h3' ).map( function( index, elem ) {
-	        var $header = $( elem );
-	        var $parent = $header.parent();
-	        var $section;
-
-	        // Wrap the header and the following element in a div with class 'section'
-	        if ( $parent.is( '#better-user-edit-fields' ) ) {
-	            $section = $header.next().addBack().wrapAll( '<div class="section" data-index="' + index + '">' ).parent();
-	        } else {
-	            // If the header is inside a div, add the 'section' class to the div
-	            $parent.addClass( 'section' );
-	            $section = $parent;
-	        }
-
-	        // Hide the section except for the active one
-	        if ( index !== activeSectionIndex ) {
-	            $section.hide();
-	        }
-
-	        return $section;
+	    	var $heading = $( elem );
+			var $parent = $heading.parent();
+	    	
+			if ( ! $parent.is( '#better-user-edit-fields' ) ) {
+				// If the heading is not a direct child of the form, add a class to the parent.
+				$parent.addClass( 'section' );
+			}
+			
 	    });
 
-	    // Create menu items
+		// Second pass. Wrap headings that aren't already wrapped.
+		$sections = $fields.find( 'h2, h3' ).map( function( index, elem ) {
+	    	var $heading = $( elem );
+			var $parent = $heading.parent();
+	    	
+			if ( $parent.is( '#better-user-edit-fields' ) ) {
+				$heading.nextUntil( 'h2, h3, div.section, p.submit' ).addBack().wrapAll( '<div class="section" data-index="' + index + '"></div>' );
+			} else {
+			}
+			
+	    });
+
+		// Reset sections to be the wrapping divs and hide them all.
+		$sections = $( 'div.section' ).hide();
+		
+	    // Create menu items.
 	    $sections.each( function( index, elem ) {
 	        var $section = $( elem );
 	        var menuItemText = $section.find( 'h2, h3' ).text();
